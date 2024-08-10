@@ -16,13 +16,15 @@ const Logo = () => {
   return (
     <Link
       href="#"
-      className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
+      className="font-medium flex space-x-2 gap-x-2  items-center text-[22px] text-black py-1 relative z-20"
     >
-      <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+      <div className="h-8 w-8 flex-shrink-0">
+        <img src="/WT.png" alt="logo" className="h-8 w-7" />
+      </div>
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="font-medium text-white dark:text-white whitespace-pre"
+        className="font-semibold text-white dark:text-white whitespace-pre pt-2"
       >
         WareTrack
       </motion.span>
