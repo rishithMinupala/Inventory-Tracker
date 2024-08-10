@@ -88,7 +88,10 @@ export const MobileSidebar = ({
         "h-10 px-2 py-4 flex flex-row md:hidden  items-center justify-between bg-blue-500 dark:bg-neutral-800 w-full"
       )}
       {...props}>
-      <div className="flex justify-end z-20 w-full">
+      <div className="flex justify-between z-20 w-full px-2 items-center py-2">
+        <div className="h-8 w-8 flex-shrink-0">
+        <img src="/WT.png" alt="logo" className="h-8 w-7" />
+      </div>
         <IconMenu2
           className="text-white dark:text-neutral-200"
           onClick={() => setOpen(!open)} />
@@ -104,7 +107,7 @@ export const MobileSidebar = ({
               ease: "easeInOut",
             }}
             className={cn(
-              "fixed h-full w-full inset-0 bg-white dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between",
+              "fixed h-full w-full inset-0 bg-gray-400 dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between",
               className
             )}>
             <div

@@ -16,7 +16,7 @@ const Logo = () => {
   return (
     <Link
       href="#"
-      className="font-medium flex space-x-2 gap-x-2  items-center text-[22px] text-black py-1 relative z-20"
+      className="font-medium flex space-x-2   items-center text-[22px] text-black py-1 relative z-20"
     >
       <div className="h-8 w-8 flex-shrink-0">
         <img src="/WT.png" alt="logo" className="h-8 w-7" />
