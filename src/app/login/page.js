@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { firestore } from "../../../firebase";
 import Cookies from "js-cookie";
 
@@ -12,6 +12,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [mailError, setMailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [error, setError] = useState("");
 
   const auth = getAuth();
   const router = useRouter();
@@ -25,9 +26,9 @@ export default function Login() {
         router.push("/dashboard");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
+        const errorCode = error.code.replace("auth/", "");
+
+        setError(errorCode.replaceAll("-", " "));
       });
     if (email == "") {
       setMailError(true);
@@ -66,10 +67,13 @@ export default function Login() {
     }
   };
 
-  const userId = Cookies.get("user");
-  if (userId) {
-    router.replace("/dashboard");
-  }
+  useEffect(() => {
+    const userId = Cookies.get("user");
+    if (userId) {
+      redirect("/dashboard");
+    }
+  });
+
   return (
     <div className="flex flex-col justify-center items-center min-h-[100vh] bg-white pt-4 pb-4 ">
       <div className="flex flex-col items-center justify-center lg:flex-row lg:justify-around  w-[100%] max-w-[1230px] ">
@@ -128,6 +132,9 @@ export default function Login() {
               <Link href="/register">Register</Link>
             </button>
           </p>
+          {error && (
+            <p className="text-red-500 text-center text-lg">*{error}</p>
+          )}
         </div>
         <div className="justify-center items-center flex  p-2">
           <img
